@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row my-5">
+        <div class="col-12">
+
+            <div class="d-flex justify-content-between">
+                <h2>အကြွေးစာရင်းများ</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userCreate">လူသစ်ထည့်ရန်</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="userCreate" tabindex="-1" aria-labelledby="userCreateLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userCreateLabel">လူသစ်လေး</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">
+                    အချက်အလက်များကို မှန်ကန်စွာဖြည့်ပါ
+                </div>
+                <form id="newUserCreate">
+                    <div class="mb-3">
+                        <label class="form-label">လူသစ် နာမည်</label>
+                        <input type="text" class="form-control form-control-lg" name="name" id="name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ချေးငွေပမာဏ</label>
+                        <input type="number" class="form-control form-control-lg" name="amount" id="amount">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">အတိုးနူန်း</label>
+                        <select class="form-select form-select-lg" name="atoeRate" id="atoeRate">
+                            <option value="5">5%</option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-lg btn-primary">စာရင်သွင်းမည်</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
