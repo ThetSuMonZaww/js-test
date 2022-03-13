@@ -14,10 +14,24 @@
     <div class="row my-5">
         <div class="col-12">
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mb-5">
                 <h2>အကြွေးစာရင်းများ</h2>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userCreate">လူသစ်ထည့်ရန်</button>
             </div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>အမည်</th>
+                    <th>ချေးငွေပမာဏ</th>
+                    <th>အတိုးနူန်း</th>
+                    <th>အတိုး</th>
+                </tr>
+                </thead>
+                <tbody id="rows">
+
+                </tbody>
+            </table>
 
         </div>
     </div>
@@ -38,18 +52,16 @@
                 <form id="newUserCreate">
                     <div class="mb-3">
                         <label class="form-label">လူသစ် နာမည်</label>
-                        <input type="text" class="form-control form-control-lg" name="name" id="name">
+                        <input type="text" class="form-control form-control-lg" name="name" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ချေးငွေပမာဏ</label>
-                        <input type="number" class="form-control form-control-lg" name="amount" id="amount">
+                        <input type="number" class="form-control form-control-lg" name="amount" id="amount" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">အတိုးနူန်း</label>
-                        <select class="form-select form-select-lg" name="atoeRate" id="atoeRate">
-                            <option value="5">5%</option>
-                            <option value="10">10%</option>
-                            <option value="15">15%</option>
+                        <select class="form-select form-select-lg" name="atoeRate" id="atoeRate" required>
+
                         </select>
                     </div>
                 </form>
@@ -64,5 +76,54 @@
 
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    let atoeRate = document.getElementById("atoeRate");
+    let newUserCreate = document.getElementById("newUserCreate");
+    let rows = document.getElementById("rows");
+    let userCreateModal = new bootstrap.Modal(document.getElementById('userCreate'));
+
+    let rates = [5,10,15,25];
+    rates.forEach(rate=>atoeRate.innerHTML+=`<option value="${rate}">${rate}%</option>`);
+
+    //form submit
+    newUserCreate.addEventListener("submit",function (e){
+        e.preventDefault();
+
+        // let userName = document.getElementById("name");
+        // let userAmount = document.getElementById("amount");
+        // let atoe = document.getElementById("atoeRate");
+
+        // console.log(userName.value,userAmount.valueAsNumber,atoe.value)
+
+
+        let formData = new FormData(this);
+
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>1</td>
+            <td>${formData.get("name")}</td>
+            <td>${formData.get("amount")}</td>
+            <td>${formData.get("atoeRate")}</td>
+            <td></td>
+        `;
+
+        rows.append(tr);
+        this.reset();
+        userCreateModal.hide();
+
+
+        console.log(formData.get("name"),formData.get("amount"),formData.get("atoeRate"))
+
+    });
+
+
+    // document.querySelector(`[form="newUserCreate"]`).addEventListener("click",function (){
+    //     console.log("U click")
+    // })
+
+
+
+</script>
 </body>
 </html>
