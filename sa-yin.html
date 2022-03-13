@@ -82,9 +82,15 @@
     let newUserCreate = document.getElementById("newUserCreate");
     let rows = document.getElementById("rows");
     let userCreateModal = new bootstrap.Modal(document.getElementById('userCreate'));
+    let no = 1;
 
     let rates = [5,10,15,25];
     rates.forEach(rate=>atoeRate.innerHTML+=`<option value="${rate}">${rate}%</option>`);
+
+    function calcAtoe(amount,rate){
+        let result = (amount/100) * rate;
+        return Math.floor(result);
+    }
 
     //form submit
     newUserCreate.addEventListener("submit",function (e){
@@ -101,12 +107,13 @@
 
         let tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>1</td>
+            <td>${no++}</td>
             <td>${formData.get("name")}</td>
             <td>${formData.get("amount")}</td>
-            <td>${formData.get("atoeRate")}</td>
-            <td></td>
+            <td>${formData.get("atoeRate")} %</td>
+            <td>${calcAtoe(formData.get("amount"),formData.get("atoeRate"))}</td>
         `;
+
 
         rows.append(tr);
         this.reset();
